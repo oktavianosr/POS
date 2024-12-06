@@ -1,0 +1,21 @@
+<-----Landing Page----->
+copyright kasih RGI dan agak di perkecil // done
+teks di gambar harus lebih mudah dipahami
+OKTAPRODUCT->OKTATECH // done
+Contact About Pos pindah ke sisi kanan //done
+Masuk Atau Buat Akun ganti menjadi Login // done
+ganti dengan tema caffe2 
+
+
+
+<------Sign in------>
+
+username dan password dikasih sedikit jarak //done
+font harus di ganti // done
+
+<----POS---->
+Gambar harus berukuran sama , tanpa latar belakang
+perbanyak menu
+ada keterangan harga
+ada klasifikasi makanan ringan dan utama
+ganti format menjadi rupiah
