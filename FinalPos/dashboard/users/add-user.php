@@ -9,6 +9,19 @@ try {
     exit;
 }
 
+require "../config/function.php";
+require "../module/module-user.php";
+
+if(isset($_POST['simpan'])){
+  if(insert($_POST)>0){
+    echo '<script>
+                alert("User Baru Berhasil Di Registrasi");
+                window.location.href="add-user.php";
+          </script>';
+          exit;
+  }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +85,7 @@ try {
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="dashboard.php" class="brand-link">
-      <img src="../images/team//RealCaffe.jpg" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="../../images/team//RealCaffe.jpg" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">RealCaffe</span>
     </a>
 
@@ -81,7 +94,7 @@ try {
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../../assets/AdminLTE-3.2.0//dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?= 'Kasir1' ?></a>
@@ -207,6 +220,7 @@ try {
     <section class="content">
       <div class="container-fluid">
         <div class="card">
+          <form action="" method="post" enctype="multipart/form-data">
           <div class="card-header">
             <h3 class="card-tittle"><i class="fas fa-plus fa-sm"></i> Add User</h3>
             <button type="submit" name="simpan" class="btn btn-primary btn-sm float-right "><i class="fas fa-save"></i> Simpan</button>
@@ -253,6 +267,7 @@ try {
               </div>
             </div>
           </div>
+          </form>
         </div>
       </div>
     </section>
