@@ -106,7 +106,7 @@ date_default_timezone_set("Asia/Jakarta");
                                         alt="..." style="max-height: 200px; object-fit: contain; margin-bottom: 0;"/>
                                     <div class="card-body mb-2">
                                         <h5 class="card-title"><?= $row['menuItemName']; ?></h5>
-                                        <p>Rp   <span><?= number_format($row['menuItemPrice']); ?></span></p>
+                                        <p>   Rp   <span><?= number_format($row['menuItemPrice']); ?></span></p>
 
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@ date_default_timezone_set("Asia/Jakarta");
                                         alt="..." style="max-height: 200px; object-fit: contain; margin-bottom: 0;"/>
                                     <div class="card-body">
                                         <h5 class="card-title mb-2"><?= $row['menuItemName']; ?></h5>
-                                        <p>Rp   <?= $row['menuItemPrice']; ?></p>
+                                        <p>    Rp   <?= $row['menuItemPrice']; ?></p>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +183,7 @@ date_default_timezone_set("Asia/Jakarta");
                                 alt="..." style="max-height: 200px; object-fit: contain; margin-bottom: 0;"/>
                             <div class="card-body ">
                                 <h5 class="card-title mb-2"><?= $row['menuItemName']; ?></h5>
-                                <p>Rp   <?= $row['menuItemPrice']; ?></p>
+                                <p> Rp   <?= $row['menuItemPrice']; ?></p>
                             </div>
                         </div>
                     </div>
@@ -215,7 +215,7 @@ date_default_timezone_set("Asia/Jakarta");
                                 alt="..." style="max-height: 200px; object-fit: contain; margin-bottom: 0;" />
                             <div class="card-body">
                                 <h5 class="card-title mb-2"><?= $row['menuItemName']; ?></h5>
-                                <p>Rp   <?= $row['menuItemPrice']; ?></p>
+                                <p> Rp   <?= $row['menuItemPrice']; ?></p>
                             </div>
                         </div>
                     </div>
@@ -392,8 +392,7 @@ date_default_timezone_set("Asia/Jakarta");
                             <div class="modal-body">
                                 <div class="col-12 mb-3">
                                     <button class="btn w-100 rounded-pill text-center btn-warning"
-                                        onclick="exactAmountButton()">Exact
-                                        Amount (<span id="exactamountspan"></span>)</button>
+                                        onclick="exactAmountButton()">Jumlah Pas (<span id="exactamountspan"></span>)</button>
                                 </div>
                                 <div class="row">
                                     <div class="col-2 mb-3"><button

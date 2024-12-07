@@ -37,7 +37,7 @@ function orderbasket(itemid, itemname, itemprice, itemimage) {
     const orderitempricespan = document.createElement("span");
 
     //create the text node with itemname and itemprice
-    const orderitemname = document.createTextNode(" " + itemname);
+    const orderitemname = document.createTextNode("   " + itemname);
     const orderitemprice = document.createTextNode(formatToRupiah(itemprice));
 
     //adjust tect color to text-danger
@@ -439,6 +439,9 @@ function nextCustomerButton() {
   orderbasketClear();
   document.getElementById("pills-food-tab").disabled = false;
   document.getElementById("pills-drink-tab").disabled = false;
+  document.getElementById("pills-snack-tab").disabled = false;
+  document.getElementById("pills-hotdrink-tab").disabled = false;
+
   // enableCustomerPaidButton();
   updateOrderDate();
 }
