@@ -78,7 +78,7 @@ require "../template/sidebar.php";
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-warning" title="edit user"><i class="fas fa-user-edit"></i></a>
+                                    <a href="edit-user.php?id=<?= $user['userid'] ?>" class="btn btn-sm btn-warning" title="edit user"><i class="fas fa-user-edit"></i></a>
                                     <a href="del-user.php?id=<?= $user['userid'] ?>&foto=<?= $user['foto'] ?>" class="btn btn-sm btn-danger" title="hapus user" onclick="return confirm('Anda yakin akan menghapus user ini?')"><i class="fas fa-user-times"></i></a>
                                 </td>
                             </tr>

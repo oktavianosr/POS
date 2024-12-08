@@ -59,3 +59,28 @@ function delete($id,$foto){
     }
     return mysqli_affected_rows($conn);
 }
+
+function selectUser1($level){
+    $result = null; 
+    if ($level == 1){
+        $result = "selected"; //atribut dari html
+    }
+
+    return $result;
+}
+function selectUser2($level){
+    $result = null; 
+    if ($level == 2){
+        $result = "selected"; //atribut dari html
+    }
+
+    return $result;
+}
+function selectUser3($level){
+    $result = null; 
+    if ($level == 3){
+        $result = "selected"; //atribut dari html
+    }
+
+    return $result;
+}
