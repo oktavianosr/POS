@@ -30,7 +30,7 @@ function uploadimg(){
 
     $namaFileBaru=rand(10,1000) . '-' . $namafile;
 
-    move_uploaded_file($tmp,'../../images/public' . $namaFileBaru);
+    move_uploaded_file($tmp,'../../images/public/' . $namaFileBaru);
 
     return $namaFileBaru;
 }
