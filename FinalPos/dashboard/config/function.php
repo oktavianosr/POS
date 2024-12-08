@@ -28,11 +28,25 @@ function uploadimg(){
             return false;
     }
 
-    $namaFileBaru=rand(10,1000).'-' . $namafile;
+    $namaFileBaru=rand(10,1000) . '-' . $namafile;
 
     move_uploaded_file($tmp,'../../images/public' . $namaFileBaru);
 
     return $namaFileBaru;
+}
+
+//untuk menambahkan ke database
+
+function getData($sql){
+    global $conn;
+
+    //menampilkan hasil
+    $result = mysqli_query($conn, $sql);
+    $rows   =[];
+    while ($row = mysqli_fetch_assoc($result)){
+        $rows[] = $row;
+    }
+    return $rows;
 }
 
 ?>

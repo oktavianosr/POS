@@ -100,8 +100,7 @@ require "template/sidebar.php";
     </div>
   </div>
     <!-- /.content -->
-  </div>
- <?php
+<?php
 
  require "template/footer.php";
 

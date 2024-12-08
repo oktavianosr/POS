@@ -1,4 +1,4 @@
-
+</div>
   <!-- /.content-wrapper -->
 
   <!-- Control Sidebar -->

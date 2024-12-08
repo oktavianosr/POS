@@ -95,7 +95,8 @@ if(isset($_POST['simpan'])){
               <div class="col-lg-4 text-center">
                 <img src="<?= $main_url ?>/images/default.png" class="profile-user-img img-circle mb-3" alt="">
                 <input type="file" class="form-control" name="image">
-                <span class="text-sm">type File Gambar JPG | PNG | GIF</span>
+                <span class="text-sm">type File Gambar JPG | PNG | Max Ukuran 1MB</span>
+                <br>
                 <span class="text-sm">Widht = Height</span>
               </div>
             </div>
