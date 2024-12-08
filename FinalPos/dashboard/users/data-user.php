@@ -61,14 +61,25 @@ require "../template/sidebar.php";
                             foreach($users as $user): ?>
                             <tr>
                                 <td><?= $no++ ?></td>
-                                <td><img src="../../assets/image<?= $user['foto'] ?>"
-                                class="rounded-circle" alt="" width="60px"></td>
+                                <td><img src="../../images/public/<?= $user['foto'] ?>"
+                                class="rounded-circle" alt="" width="60px" height="60px"></td>
                                 <td><?= $user['username'] ?></td>
                                 <td><?= $user['fullname'] ?></td>
                                 <td><?= $user['address'] ?></td>
-                                <td><?= $user['level'] ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-warning" title="edit user"><i class="fas fa-edit"></i></a>
+                                    <?php
+                                    if($user['level'] == 1){
+                                        echo "Administrator";
+                                    }else if($user['level'] == 2){
+                                        echo "Supervisor";
+                                    }else {
+                                        echo "Operator";
+                                    }
+                                    ?>
+                                </td>
+                                <td>
+                                    <a href="" class="btn btn-sm btn-warning" title="edit user"><i class="fas fa-user-edit"></i></a>
+                                    <a href="del-user.php?id=<?= $user['userid'] ?>&foto=<?= $user['foto'] ?>" class="btn btn-sm btn-danger" title="hapus user" onclick="return confirm('Anda yakin akan menghapus user ini?')"><i class="fas fa-user-times"></i></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
