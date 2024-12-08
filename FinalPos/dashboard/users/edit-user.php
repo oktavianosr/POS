@@ -26,6 +26,15 @@ $sqlEdit = "SELECT * FROM tbl_user WHERE userid = $id";
 $user    = getData($sqlEdit)[0];
 $level   = $user['level'];
 
+if (isset($_POST['koreksi'])){
+    if(update($_POST)){
+        echo '  <script>
+                    alert("Data User Berhasil Di Update");
+                    document.location.href  = "data-user.php";
+                </script>';
+    }
+}
+
 ?>
 
   <!-- Content Wrapper. Contains page content -->

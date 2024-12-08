@@ -84,3 +84,55 @@ function selectUser3($level){
 
     return $result;
 }
+
+function update($data){
+    global $conn;
+
+    $iduser     = mysqli_real_escape_string($conn, $data['id']);
+    $username   = strtolower(mysqli_real_escape_string($conn, $data['username']));
+    $fullname   = mysqli_real_escape_string($conn, $data['fullname']);
+    $level      = mysqli_real_escape_string($conn, $data['level']);
+    $address    = mysqli_real_escape_string($conn, $data['address']);
+    $gambar     = mysqli_real_escape_string($conn, $_FILES['image']['name']);
+    $fotoLama   = mysqli_real_escape_string($conn, $data['oldImg']);
+
+    //cek username sekarang
+    $queryUsername  = mysqli_query($conn, "SELECT * FROM tbl_USER WHERE userid=$iduser");
+    $dataUsername   = mysqli_fetch_assoc($queryUsername);
+    $curUsername    = $dataUsername['username'];
+
+    //cek username baru
+    $newUsername    = mysqli_query($conn, "SELECT username FROM tbl_user WHERE username='$username'");
+
+    if($username !== $curUsername){ //cek username yang baru sudah ada di database atau belum
+        if(mysqli_num_rows($newUsername)){
+            echo "  <script>
+                    alert('Username Sudah Terpakai, Update Data User Gagal!');
+                    </script>";
+                    return false;
+        }
+    }
+
+    //cek gambar
+
+    if($gambar != null){
+        $url     = "data-user.php";
+        $imgUser = uploadimg($url);
+        if($fotoLama != 'default.png' ){
+            @unlink('../../images/public/' . $fotoLama );
+        }
+    }else {
+        $imgUser   = $fotoLama;
+    }
+
+    mysqli_query($conn, "UPDATE tbl_user SET
+                        username    = '$username',
+                        fullname    = '$fullname',
+                        address     = '$address',
+                        level       = '$level',
+                        foto        = '$imgUser'
+                        WHERE userid = $iduser
+                        ");
+
+    return mysqli_affected_rows($conn);
+}
