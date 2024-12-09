@@ -109,7 +109,7 @@ if (!isset($_SESSION['username'])) {
                                     Tempat Nongkrong <em>Favoritmu</em> Dengan Kopi Dan Pemandangan Indah.
                                 </p>
 
-                                <a class="btn custom-btn smoothscroll me-2 mb-2" href="main/index.php" ><strong>Check Menu</strong></a>
+                                <a class="btn custom-btn smoothscroll me-2 mb-2" href="../main/index.php" ><strong>Check Menu</strong></a>
                             </div>
 
                         </div>

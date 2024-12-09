@@ -20,7 +20,7 @@ date_default_timezone_set("Asia/Jakarta");
         <div class="row mx-0 py-3 bg-light">
             <div class="col-sm-8">
                 <div class="card rounded-3 mb-3">
-
+                <a href="../login/logout.php" class="btn btn-primary">Keluar</a>
                     <div class="card-body" id="navbar">
                     <?php
                         include 'auth.php';
@@ -46,8 +46,13 @@ date_default_timezone_set("Asia/Jakarta");
                             die("ERROR: Could not execute $sql. " . $e->getMessage());
                         }
                         ?>
-                        <p>Order ID: <span id="latestOrderId"><?= $row['orderId'] ?></span></p>
-                        <p>Tanggal Order Terakhir: <span id="latestOrderDate"><?= $row['orderDateTime'] ?></span></p>
+                        <div class="row">
+                            <div class="col">
+                                <p>Order ID: <span id="latestOrderId"><?= $row['orderId'] ?></span></p>
+                                <p>Tanggal Order Terakhir: <span id="latestOrderDate"><?= $row['orderDateTime'] ?></span></p>
+                            </div>
+                        </div>
+                        
                         <ul class="nav nav-pills" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active rounded-pill" id="pills-food-tab" data-bs-toggle="pill"

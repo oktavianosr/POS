@@ -62,11 +62,17 @@ if (isset($_POST['koreksi'])){
       <div class="container-fluid">
         <div class="card">
           <form action="" method="post" enctype="multipart/form-data">
-          <div class="card-header">
-            <h3 class="card-tittle"><i class="fas fa-plus fa-sm"></i> Add User</h3>
-            <button type="submit" name="koreksi" class="btn btn-primary btn-sm float-right "><i class="fas fa-save"></i> Koreksi</button>
-            <button type="reset" class="btn btn-danger btn-sm float-right mr-1"><i class=""></i> Reset</button>
+          <div class="card-header row">
+            <div class="col-6">
+                <h3 class="card-tittle mb-0"><i class="fas fa-pen fa-sm"></i> Edit User</h3>
+            </div>
+            <div class="col-6 text-right">
+                <button type="submit" name="koreksi" class="btn btn-primary btn-sm float-right"><i class="fas fa-save"></i> Koreksi</button>
+                <button type="reset" class="btn btn-danger btn-sm float-right mr-1"><i class=""></i> Reset</button>
+            </div>
           </div>
+          
+          
           <div class="card-body">
             <div class="row">
                 <input type="hidden" value="<?= $user['userid'] ?>" name="id">

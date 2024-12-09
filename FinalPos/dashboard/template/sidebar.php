@@ -100,7 +100,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="../users/data-user.php" class="nav-link">
+                        <a href="<?= $main_url ?>/dashboard/users/data-user.php" class="nav-link">
                             <i class="far fa-circle nav-icon text-sm"></i>
                             <p>Users</p>
                         </a>
