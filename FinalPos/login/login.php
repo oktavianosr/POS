@@ -1,6 +1,30 @@
 <?php
 session_start();
 
+require "../dashboard/config/koneksi.php";
+
+if(isset($_POST['submit'])){
+  $username = mysqli_real_escape_string($conn, $_POST['username']);
+  $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+  $queryLogin = mysqli_query($conn, "SELECT * FROM tbl_user WHERE username='$username'");
+
+  if(mysqli_num_rows($queryLogin)===1){
+    $row = mysqli_fetch_assoc($queryLogin);
+    if(password_verify($password,$row['password'])){
+      header("location:../dashboard");
+      exit();
+    }else{
+      echo "<script>
+              alert('password salah');
+            </script>";
+              }
+  }else{
+    echo "<script>
+    alert('username tidak terdaftar');
+  </script>";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +35,7 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="hold-transition login-page" id="bg-login">
     <div class="container-signup" id="signup" style="display:none;">
       <h1 class="form-title">Sign Up</h1>
       <form method="post" action="../signup/auth.php">
@@ -40,7 +64,7 @@ session_start();
             <input type="text" name="no_hp" id="no_hp" placeholder="No.hp" required>
             <label for="no_hp">No.hp</label>
         </div>
-        <input type="submit" class="btn" value="Sign Up" name="signUp">
+        <button class="btn" id="signUp" name="signUp"></button>
       </form>
       <p class="or">
       </p>
@@ -50,9 +74,9 @@ session_start();
       </div>
     </div>
 
-    <div class="container" id="signIn">
+    <div class="container  slide-down" id="signIn">
         <h1 class="form-title">Login</h1>
-        <form method="POST" action="auth.php">
+        <form method="POST" action="">
           <div class="input-group">
               <i class="fas fa-envelope"></i>
               <input type="text" name="username" id="username" placeholder="Username" required>
@@ -66,7 +90,7 @@ session_start();
           <!-- <p class="recover">
             <a href="#">Recover Password</a>
           </p> -->
-          <input type="submit" class="btn" value="Masuk">
+          <button class="btn" name="submit">Masuk</button>
         </form>
         <div class="links">
           <p>Belum Memiliki Akun?</p>
