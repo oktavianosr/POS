@@ -10,6 +10,8 @@ if(!isset($_SESSION['ssLoginPOS'])){
 
 
 require "config/koneksi.php";
+require "config/function.php";
+
 
 $title = "Dashboard - Admin";
 require "template/header.php";

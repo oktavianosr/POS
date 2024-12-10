@@ -18,7 +18,7 @@ if(isset($_POST['submit'])){
     $row = mysqli_fetch_assoc($queryLogin);
     if(password_verify($password,$row['password'])){
       $_SESSION['ssLoginPOS'] = true;
-      $_SESSION['ssUserPos'] = $username;
+      $_SESSION['ssUserPOS'] = $username;
       header("location:../dashboard");
       exit();
     }else{
