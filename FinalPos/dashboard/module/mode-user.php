@@ -1,4 +1,9 @@
 <?php
+if(userLogin()['level']!=1){
+    header("location:" . $main_url . "dashboard/error-page.php"); 
+    exit();
+}
+
 require "../config/koneksi.php";
 function insert($data){
     global $conn;

@@ -3,7 +3,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="dashboard.php" class="brand-link">
-      <img src="<?= $main_url ?>/images/team/RealCaffe.jpg" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="<?= $main_url ?>images/team/RealCaffe.jpg" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">RealCaffe</span>
     </a>
 
@@ -23,11 +23,15 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="dashboard.php" class="nav-link">
+                <a href="../dashboard.php" class="nav-link <?= menuHome() ?>">
                     <i class="nav-icon fas fa-tachometer-alt text-sm"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
+            <?php
+            if(userLogin()['level']!=3){
+
+            ?>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-folder text-sm"></i>
@@ -57,6 +61,7 @@
                     </li>
                 </ul>
             </li>
+            <?php } ?>
             <li class="nav-header">Transaksi</li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
@@ -90,7 +95,11 @@
                     <p>Laporan Stock</p>
                 </a>
             </li>
-            <li class="nav-item">
+            <?php
+            if(userLogin()['level']==1){
+            
+            ?>
+            <li class="nav-item  <?= menuSetting() ?>">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-cog text-sm"></i>
                     <p>
@@ -99,14 +108,15 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="<?= $main_url ?>/dashboard/users/data-user.php" class="nav-link">
+                    <li class="nav-item ">
+                        <a href="<?= $main_url ?>dashboard/users/data-user.php" class="nav-link <?= menuUser() ?>">
                             <i class="far fa-circle nav-icon text-sm"></i>
                             <p>Users</p>
                         </a>
                     </li>
                 </ul>
             </li>
+            <?php } ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

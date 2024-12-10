@@ -20,7 +20,7 @@
                     Ubah Kata Sandi <i class="fas fa-key"></i>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="<?= $main_url ?>/login/logout.php" class="dropdown-item text-right">
+                <a href="<?= $main_url ?>login/logout.php" class="dropdown-item text-right">
                     Keluar <i class="fas fa-sign-out-alt"></i>
                 </a>
             </div>

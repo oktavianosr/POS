@@ -70,3 +70,37 @@ function userLogin(){
     $dataUser   = getData("SELECT * FROM tbl_user WHERE username = '$userActive'")[0];
     return $dataUser;
 }
+
+function userMenu(){
+    $uri_path     = parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
+    $uri_segments = explode('/',$uri_path);
+    $menu         = $uri_segments[4];
+    return $menu;
+}
+
+function menuHome(){
+    if(userMenu() == 'dashboard.php' ){
+        $result = 'active';
+    }else {
+        $result =  null;
+    }
+    return $result;
+}
+
+function menuSetting(){
+    if(userMenu() == 'users'){
+        $result = 'menu-is-open menu-open';
+    }else {
+        $result = null;
+    }
+    return $result;
+}
+
+function menuUser(){
+    if(userMenu() == 'users' ){
+        $result = 'active';
+    }else {
+        $result =  null;
+    }
+    return $result;
+}

@@ -5,6 +5,6 @@ $_SESSION=[];
 session_unset();
 session_destroy();
 echo json_encode(["message" => "Logged out successfully"]);
-header("location:../index.php");
+header("location:../");
 exit();
 ?>
