@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if(isset($_SESSION['ssLoginPOS'])){
+  header("location:../dashboard");
+  exit();
+}
+
 require "../dashboard/config/koneksi.php";
 
 if(isset($_POST['submit'])){
@@ -12,6 +17,8 @@ if(isset($_POST['submit'])){
   if(mysqli_num_rows($queryLogin)===1){
     $row = mysqli_fetch_assoc($queryLogin);
     if(password_verify($password,$row['password'])){
+      $_SESSION['ssLoginPOS'] = true;
+      $_SESSION['ssUserPos'] = $username;
       header("location:../dashboard");
       exit();
     }else{
@@ -23,6 +30,7 @@ if(isset($_POST['submit'])){
     echo "<script>
     alert('username tidak terdaftar');
   </script>";
+  header("location:login.php");
   }
 }
 ?>

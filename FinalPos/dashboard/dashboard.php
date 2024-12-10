@@ -1,4 +1,14 @@
 <?php
+
+
+session_start();
+
+if(!isset($_SESSION['ssLoginPOS'])){
+  header("location:../login/login.php");
+  exit();
+}
+
+
 require "config/koneksi.php";
 
 $title = "Dashboard - Admin";

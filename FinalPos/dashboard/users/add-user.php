@@ -1,4 +1,14 @@
 <?php
+
+session_start();
+
+if(!isset($_SESSION['ssLoginPOS'])){
+  header("location:../login/login.php");
+  exit();
+}
+
+
+
 try {
     $pdo = new PDO('mysql:host=localhost;dbname=point_of_sales', 'root', '', [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
