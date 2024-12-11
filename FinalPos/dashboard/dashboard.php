@@ -13,7 +13,7 @@ require "config/koneksi.php";
 require "config/function.php";
 
 
-$title = "Dashboard - Admin";
+$title = "Dashboard";
 require "template/header.php";
 require "template/navbar.php";
 require "template/sidebar.php";

@@ -1,22 +1,33 @@
 <?php
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=point_of_sales', 'root', '', [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
-} catch (Exception $e) {
-    echo json_encode(['success' => false, 'message' => 'Database connection error: ' . $e->getMessage()]);
-    exit;
+
+session_start();
+
+if(!isset($_SESSION['ssLoginPOS'])){
+  header("location:../../login/login.php");
+  exit();
 }
 
 require "../config/function.php";
 require "../config/koneksi.php";
-// require "../module/mode-supplier.php";
+require "../module/mode-supplier.php";
 
 $title="Add Supplier - User";
 require "../template/header.php";
 require "../template/navbar.php";
 require "../template/sidebar.php";
+
+$alert = '';
+
+if(isset($_POST['simpan'])){
+  if(insert($_POST)){
+    $alert = '<div class="alert alert-success alert-dismissable fade show" role="alert">
+      <i class="icon fas fa-check"></i> Supplier Berhasil Ditambahkan
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" >
+      <span aria-hidden="true">&times;</span>
+      </button>
+    </div>';
+  }
+}
 ?>
 
 
@@ -57,6 +68,7 @@ require "../template/sidebar.php";
                 <div class="card-body">
                     <div class="row">
                         <div class="col-lg-8 mb-3">
+                      <?php if($alert != ''){echo $alert;} ?>
                             <div class="form-group">
                                 <label for="nama">Nama</label>
                                 <input type="text" name="nama" class="form-control" id="nama" placeholder="nama supplier" autofocus autocomplete="off" required>

@@ -23,7 +23,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="../dashboard.php" class="nav-link <?= menuHome() ?>">
+                <a href="../dashboard/dashboard.php" class="nav-link <?= menuHome() ?>">
                     <i class="nav-icon fas fa-tachometer-alt text-sm"></i>
                     <p>Dashboard</p>
                 </a>
