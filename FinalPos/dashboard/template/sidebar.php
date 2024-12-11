@@ -23,7 +23,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="../dashboard/dashboard.php" class="nav-link <?= menuHome() ?>">
+                <a href="../dashboard.php" class="nav-link <?= menuHome() ?>">
                     <i class="nav-icon fas fa-tachometer-alt text-sm"></i>
                     <p>Dashboard</p>
                 </a>
@@ -32,7 +32,7 @@
             if(userLogin()['level']!=3){
 
             ?>
-            <li class="nav-item">
+            <li class="nav-item <?= menuMaster() ?>">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-folder text-sm"></i>
                     <p>
@@ -42,7 +42,7 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="<?= $main_url ?>dashboard/supplier/data-supplier.php" class="nav-link <?=menuSupplier()?>">
                             <i class="far fa-circle nav-icon text-sm"></i>
                             <p>Pemasok</p>
                         </a>

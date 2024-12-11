@@ -18,4 +18,15 @@ function insert($data){
 
     return mysqli_affected_rows($conn);
 }
+
+function delete($id){
+    global $conn;
+
+    $sqlDelete = "DELETE FROM tbl_supplier WHERE id_supplier = $id";
+
+    mysqli_query($conn,$sqlDelete);
+
+    return mysqli_affected_rows($conn);
+}
+
 ?>
