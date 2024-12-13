@@ -1,53 +1,12 @@
 <?php
 date_default_timezone_set("Asia/Jakarta");
 
-session_start(); // Pastikan sesi dimulai
 
-// require "../login/auth.php";
+session_start();
+require "../dashboard/config/koneksi.php";
 
-// Periksa apakah pengguna login
-$isLoggedIn = isset($_SESSION['member_id']);
 
-if ($isLoggedIn) {
-    // Koneksi ke database
-    $conn = mysqli_connect("localhost", "root", "", "point_of_sales");
-    if (!$conn) {
-        die("Koneksi gagal: " . mysqli_connect_error());
-    }
-
-    $member_id = $_SESSION['member_id'];
-
-    // Ambil saldo member
-    $querySaldo = "SELECT saldo FROM saldo WHERE member_id = ?";
-    $stmt = $conn->prepare($querySaldo);
-    $stmt->bind_param("i", $member_id);
-    $stmt->execute();
-    $resultSaldo = $stmt->get_result();
-    $saldo = ($resultSaldo->num_rows > 0) ? $resultSaldo->fetch_assoc()['saldo'] : 0;
-
-    // Ambil promo aktif untuk member
-    $queryPromo = "SELECT promo_name, promo_discount FROM promo WHERE promo_start_date <= CURDATE() AND promo_end_date >= CURDATE()";
-    $resultPromo = mysqli_query($conn, $queryPromo);
-
-    $promoList = [];
-    if (mysqli_num_rows($resultPromo) > 0) {
-        while ($promoRow = mysqli_fetch_assoc($resultPromo)) {
-            $promoList[] = [
-                'name' => $promoRow['promo_name'],
-                'discount' => $promoRow['promo_discount']
-            ];
-        }
-    }
-
-    // Tutup koneksi
-    mysqli_close($conn);
-} else {
-    // Jika tidak login, set saldo dan promoList ke nilai default
-    $saldo = 0;
-    $promoList = [];
-}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,27 +27,34 @@ if ($isLoggedIn) {
                 <div class="card rounded-3 mb-3">
                 <!-- <a href="../login/logout.php" class="btn btn-primary">Keluar</a> -->
                     <div class="card-body" id="navbar">
-                    <?php if($isLoggedIn): ?>
-                        <p>
-                                <strong>Saldo Anda:</strong> Rp <?= number_format($saldo, 0, ',', '.') ?><br>
-                                <strong>Kode Promo:</strong>
-                                <?php if (!empty($promoList)): ?>
-                                    <ul>
-                                        <?php foreach ($promoList as $promo): ?>
-                                            <li><?= $promo['name'] ?> - Diskon <?= $promo['discount'] ?>%</li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                <?php else: ?>
-                                    Tidak ada promo aktif.
-                                <?php endif; ?>
-                            </p>
-                            <a href="../login/logout.php" class="btn btn-danger float-end    ">Logout</a>
-                        <?php else: ?>
-                            <a href="login.php" class="btn btn-primary float-end">Login Sebagai Member</a>
-                        <?php endif; ?>
+                    
+                    <?php
+                        include 'auth.php';
+
+                        try {
+                            // Query untuk mengambil semua data orderan dan mengurutkan berdasarkan tanggal terbaru
+                            $sql = "SELECT orderId, orderDateTime FROM point_of_sales.orders ORDER BY orderDateTime DESC";
+                            $result = $pdo->query($sql);
+
+                            if ($result->rowCount() > 0) {
+                                $row = $result->fetch() ;
+                                    $orderId = $row['orderId'];
+                                    $orderDate = $row['orderDateTime']; // Format dari database
+                                    // Format tanggal menjadi lebih ramah pengguna
+                                    $formattedDate = date("d F Y, h:i A", strtotime($orderDate));
+                        ?>
+                                    <?php
+                                
+                            } else {
+                                echo '<p>No orders found.</p>';
+                            }
+                        } catch (PDOException $e) {
+                            die("ERROR: Could not execute $sql. " . $e->getMessage());
+                        }
+                        ?>
                         <div class="row">
                             <div class="col">
-                                <!-- <p>Order ID: <span id="latestOrderId"><?= $row['orderId'] ?></span> | Tanggal Order Terakhir: <span id="latestOrderDate"><?= $row['orderDateTime'] ?></span> <a href="login.php" class="btn btn-primary float-right float-end">Login Sebagai Member</a></p> -->
+                                <p>Order ID: <span id="latestOrderId"><?= $row['orderId'] ?></span> | Tanggal Order Terakhir: <span id="latestOrderDate"><?= $row['orderDateTime'] ?></span></p>
                             </div>
                         </div>
                         

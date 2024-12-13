@@ -3,8 +3,8 @@
 
 function uploadimg($url = null){
     $namafile = $_FILES['image']['name'];
-    $ukuran = $_FILES['image']['size'];
-    $tmp = $_FILES['image']['tmp_name'];
+    $ukuran   = $_FILES['image']['size'];
+    $tmp      = $_FILES['image']['tmp_name'];
 
     //validasi file gambar yang boleh di upload
 
@@ -69,6 +69,10 @@ function userLogin(){
     $userActive = $_SESSION['ssUserPOS'];
     $dataUser   = getData("SELECT * FROM tbl_user WHERE username = '$userActive'")[0];
     return $dataUser;
+}
+
+function telerLogin(){
+    $telerActive = $_SESSION[''];
 }
 
 function userMenu(){

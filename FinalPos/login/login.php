@@ -14,6 +14,8 @@ if(isset($_POST['submit'])){
 
   $queryLogin = mysqli_query($conn, "SELECT * FROM tbl_user WHERE username='$username'");
 
+  $telerLogin = mysqli_query($conn,"SELECT * FROM user WHERE username='$username'");
+
   if(mysqli_num_rows($queryLogin)===1){
     $row = mysqli_fetch_assoc($queryLogin);
     if(password_verify($password,$row['password'])){
@@ -31,7 +33,22 @@ if(isset($_POST['submit'])){
     alert('username tidak terdaftar');
   </script>";
   header("location:login.php");
-  }
+}
+
+if(mysqli_num_rows($telerLogin) ===1){
+  $row = mysqli_fetch_assoc($telerLogin);
+  if(password_verify($password,$row['password'])){
+    $_SESSION['ssLoginPOS'] = true;
+    $_SESSION['ssUserPOS'] = $username;
+    header("location:../main/teler.php");
+    exit();
+  }else{
+    echo "<script>
+            alert('password salah');
+          </script>";
+            }
+}
+
 }
 ?>
 <!DOCTYPE html>
