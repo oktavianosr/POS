@@ -1,10 +1,26 @@
 <?php
+
+use LDAP\Result;
+
 date_default_timezone_set("Asia/Jakarta");
 
 
 session_start();
 require "../dashboard/config/koneksi.php";
 
+if (isset($_POST['username']) && isset($_POST['password'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+    $result = $conn->query($sql);
+
+    if($result->num_rows > 0){
+        $_SESSION['username'] = $username;
+        $_SESSION['password'] = $password;
+        
+    }
+}
 
 ?>
 <!DOCTYPE html>

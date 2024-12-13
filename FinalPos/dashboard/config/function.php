@@ -71,6 +71,13 @@ function userLogin(){
     return $dataUser;
 }
 
+function memberLogin(){
+    $memberActive = $_SESSION['ssMemberPOS'];
+    $dataMember   = getData("SELECT * FROM member WHERE username = '$memberActive'");
+
+    return $dataMember;
+}
+
 function telerLogin(){
     $telerActive = $_SESSION[''];
 }

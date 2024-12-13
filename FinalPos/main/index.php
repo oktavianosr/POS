@@ -3,6 +3,8 @@ date_default_timezone_set("Asia/Jakarta");
 
 session_start(); // Pastikan sesi dimulai
 
+
+
 // require "../login/auth.php";
 
 // Periksa apakah pengguna login
@@ -46,6 +48,8 @@ if ($isLoggedIn) {
     $saldo = 0;
     $promoList = [];
 }
+require "../dashboard/config/function.php";
+require "../dashboard/config/koneksi.php";
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +59,11 @@ if ($isLoggedIn) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+        <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="<?= $main_url ?>assets/AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css">
+      <!-- IonIcons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     <title>Point Of Sale</title>
@@ -72,6 +80,7 @@ if ($isLoggedIn) {
                         <p>
                                 <strong>Saldo Anda:</strong> Rp <?= number_format($saldo, 0, ',', '.') ?><br>
                                 <strong>Kode Promo:</strong>
+                                <?= memberLogin()['username']  ?><i class="fas fa-user-cog ml-2"></i>
                                 <?php if (!empty($promoList)): ?>
                                     <ul>
                                         <?php foreach ($promoList as $promo): ?>
@@ -82,9 +91,10 @@ if ($isLoggedIn) {
                                     Tidak ada promo aktif.
                                 <?php endif; ?>
                             </p>
-                            <a href="../login/logout.php" class="btn btn-danger float-end    ">Logout</a>
+                            <a href="logout.php" class="btn btn-danger float-end me-2 mt-3">Logout</a>
                         <?php else: ?>
-                            <a href="login.php" class="btn btn-primary float-end">Login Sebagai Member</a>
+                            <a href="login.php" class="btn btn-primary float-end me-2 mt-3">Login Sebagai Member</a>
+                            <a href="../index.php" class="btn btn-danger float-end me-2 mt-3">Kembali</a>
                         <?php endif; ?>
                         <div class="row">
                             <div class="col">
@@ -92,7 +102,7 @@ if ($isLoggedIn) {
                             </div>
                         </div>
                         
-                        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                        <ul class="nav nav-pills" id="pills-tab" role="tablist">        
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active rounded-pill" id="pills-food-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-food" type="button" role="tab" aria-controls="pills-food"

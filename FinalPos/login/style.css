@@ -68,6 +68,23 @@ input {
   padding-left: 1.5rem;
   font-size: 15px;
 }
+/* Gaya untuk dropdown (select) */
+form select {
+  width: 100%;
+  height: 40px;
+  padding: 5px 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #ffffff;
+  font-size: 16px;
+  color: #495057;
+  appearance: none; /* Hapus panah default browser */
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%2394959A" d="M2 0L0 2h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+}
+
 .input-group {
   padding: 2% 0;
   position: relative;

@@ -16,6 +16,8 @@ if(isset($_POST['submit'])){
 
   $telerLogin = mysqli_query($conn,"SELECT * FROM user WHERE username='$username'");
 
+  $memberLogin = mysqli_query($conn,"SELECT * FROM member WHERE username='$username'");
+
   if(mysqli_num_rows($queryLogin)===1){
     $row = mysqli_fetch_assoc($queryLogin);
     if(password_verify($password,$row['password'])){
@@ -35,12 +37,25 @@ if(isset($_POST['submit'])){
   header("location:login.php");
 }
 
-if(mysqli_num_rows($telerLogin) ===1){
+if(mysqli_num_rows($telerLogin) === 1){
   $row = mysqli_fetch_assoc($telerLogin);
   if(password_verify($password,$row['password'])){
     $_SESSION['ssLoginPOS'] = true;
     $_SESSION['ssUserPOS'] = $username;
     header("location:../main/teler.php");
+    exit();
+  }else{
+    echo "<script>
+            alert('password salah');
+          </script>";
+            }
+}
+if(mysqli_num_rows($memberLogin) === 1){
+  $row = mysqli_fetch_assoc($memberLogin);
+  if(password_verify($password,$row['password'])){
+    $_SESSION['ssLoginPOS'] = true;
+    $_SESSION['ssMemberPOS'] = $username;
+    header("location:../main");
     exit();
   }else{
     echo "<script>
@@ -89,6 +104,15 @@ if(mysqli_num_rows($telerLogin) ===1){
             <input type="text" name="no_hp" id="no_hp" placeholder="No.hp" required>
             <label for="no_hp">No.hp</label>
         </div>
+        <div class="form-group">
+                <label for="level">Level User</label>
+                <select name="role" id="role" class="form-control" required>
+                    <option value="" disabled selected>Pilih level user</option>
+                    <option value="1">Admin</option>
+                    <option value="2">Manager</option>
+                    <option value="3">Karyawan</option>
+                </select>
+            </div>
         <button class="btn" id="signUp" name="signUp"></button>
       </form>
       <p class="or">
